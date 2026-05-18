@@ -26,6 +26,12 @@ const aeonik = localFont({
   display: "swap",
 });
 
+const montaguSlab = localFont({
+  src: "../public/MontaguSlab-VariableFont.ttf",
+  variable: "--font-montagu-slab",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "long your longs",
   description: "We let you be perpetually optimistic on memes.",
@@ -40,7 +46,7 @@ export default function RootLayout({
     <html lang="en" style={{ minHeight: "100vh" }}>
       <body
         style={{ minHeight: "100vh", margin: 0, padding: 0 }}
-        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${aeonik.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${aeonik.variable} ${montaguSlab.variable} antialiased`}
       >
         {children}
       </body>
