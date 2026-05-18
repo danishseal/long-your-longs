@@ -64,6 +64,8 @@ const ASCII_ASSET_FILES = [
   "islandB3.txt",
   "landA0.txt",
   "landA1.txt",
+  "plane.txt",
+  "corporate_plane.txt",
   "shar.txt",
   "sheep_cloud.txt",
   "sign1.txt",
