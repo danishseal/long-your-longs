@@ -122,7 +122,7 @@ export default function ASCIIAnimationComponent({
           width: "100%",
           height: "100vh",
           backgroundColor: "#f5f2ed",
-          color: "#000000",
+          color: "#065f46",
           fontSize: "18px",
           lineHeight: "18px",
           whiteSpace: "pre",

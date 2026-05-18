@@ -33,8 +33,11 @@ const montaguSlab = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "long your longs",
+  title: "LYL",
   description: "We let you be perpetually optimistic on memes.",
+  icons: {
+    icon: "/assets/bar.webp",
+  },
 };
 
 export default function RootLayout({

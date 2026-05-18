@@ -14,6 +14,14 @@ export default function Home() {
                   <br />
                   optimistic on memes.
                 </p>
+                <div className="mt-8 flex justify-center">
+                  <button
+                    type="button"
+                    className="bg-[#065f46] px-8 py-3 text-sm uppercase tracking-[0.2em] text-[#f5f2ed] transition-opacity hover:opacity-90 font-[family-name:jgs]"
+                  >
+                    Launch
+                  </button>
+                </div>
               </div>
             </div>
           </div>
