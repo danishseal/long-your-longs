@@ -27,7 +27,7 @@ const aeonik = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "LONG YOUR LONGS",
+  title: "long your longs",
   description: "We let you be perpetually optimistic on memes.",
 };
 
