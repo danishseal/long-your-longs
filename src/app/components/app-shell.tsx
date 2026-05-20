@@ -123,7 +123,7 @@ export default function AppShell({
             >
               <div className="relative flex items-center justify-center px-3 pb-2 pt-[22px]">
                 <a
-                  href="/"
+                  href="/home"
                   className="flex items-center justify-center text-[#065f46] transition-opacity hover:opacity-80"
                 >
                   <span className="sr-only">Long Your Longs</span>

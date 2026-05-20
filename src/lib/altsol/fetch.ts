@@ -225,8 +225,10 @@ function isTestLaunch(account: { name?: string; symbol?: string }): boolean {
   const name = (account.name ?? "").trim();
   const symbol = (account.symbol ?? "").trim();
   if (!name && !symbol) return true; // wholly unnamed launches
+  if (["TEST", "TST"].includes(symbol.toUpperCase())) return true;
   if (symbol.startsWith("SMK")) return true;
   const lower = name.toLowerCase();
+  if (lower === "test") return true;
   if (lower.startsWith("smoke test")) return true;
   if (lower.startsWith("long longs probe")) return true;
   return false;
