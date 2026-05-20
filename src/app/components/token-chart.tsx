@@ -165,6 +165,10 @@ interface TokenChartProps {
   launchTs?: number;
   /** Token's market cap in USD at launch — used to scale Y-axis to dollars. */
   mcAtLaunchUsd?: number;
+  /** When false (Mode A only), skip the candle render and show "no trades
+   *  yet" — we don't want to display synthetic NAV derived from BTC's recent
+   *  candles before any actual buy has happened. Defaults to true. */
+  hasTradedYet?: boolean;
 }
 
 export default function TokenChart({
@@ -173,6 +177,7 @@ export default function TokenChart({
   direction = "long",
   launchTs,
   mcAtLaunchUsd,
+  hasTradedYet = true,
 }: TokenChartProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<IChartApi | null>(null);
@@ -249,6 +254,12 @@ export default function TokenChart({
 
     // Try to replace mock data with real Hyperliquid candles for this perp.
     let cancelled = false;
+    // Skip the candle fetch entirely when the launch hasn't traded yet — we
+    // don't want to render a synthetic leveraged-NAV chart derived from BTC
+    // movement when no buy has actually opened a position.
+    if (!hasTradedYet) {
+      return () => { cancelled = true; chart.remove(); chartRef.current = null; candleSeriesRef.current = null; };
+    }
     fetchHyperliquidCandles(coin).then((rawCandles) => {
       if (cancelled || rawCandles.length === 0) return;
 
@@ -323,6 +334,33 @@ export default function TokenChart({
     if (n >= 1_000) return `$${(n / 1_000).toFixed(2)}K`;
     return `$${n.toFixed(2)}`;
   };
+
+  if (!hasTradedYet) {
+    return (
+      <div className="relative h-[260px] w-full overflow-hidden border-y border-white/8 bg-[#0f0f11]">
+        <div className="border-b border-white/8 px-4 py-3 text-sm text-[#b7b7bf]">
+          <div className="flex items-center gap-4">
+            <span>1m</span>
+            <span>
+              {isLeveraged ? (
+                <>token MC · {coin} × {leverage}x {direction}</>
+              ) : (
+                <>{coin}-PERP</>
+              )}
+            </span>
+            <span className="ml-auto text-[#7a827b]">no trades yet</span>
+          </div>
+        </div>
+        <div className="flex h-[calc(100%-49px)] items-center justify-center text-center text-[13px] text-[#8b8b95]">
+          <div>
+            no buys or sells yet on this launch.<br />
+            the chart populates with real data after the first trade
+            {launchTs ? ` (launched ${Math.max(0, Math.round((Date.now()/1000 - launchTs)/60))}m ago)` : ""}.
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative h-[420px] w-full overflow-hidden border-y border-white/8">

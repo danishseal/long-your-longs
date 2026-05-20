@@ -70,6 +70,7 @@ export function PerpPositionPanel({
   launchTs,
   symbol,
   source = "perp",
+  hasTradedYet = true,
 }: {
   coin: string;
   leverageBps: number;
@@ -78,6 +79,10 @@ export function PerpPositionPanel({
   symbol: string;
   /** "perp" = Mode A (immediate proportional perp). "pump" = Mode B (fees harvest periodically). */
   source?: "perp" | "pump";
+  /** Mode A only: false until the first on-chain buy. When false, the panel
+   *  shows an "awaiting first buy" state instead of synthesizing entry/mark/PnL
+   *  from BTC candles. Defaults to true so existing callers don't break. */
+  hasTradedYet?: boolean;
 }) {
   const leverage = leverageBps / 10_000;
   const [state, setState] = useState<{ entry: number; mark: number } | null>(null);
@@ -200,6 +205,57 @@ export function PerpPositionPanel({
         <p className="mt-2 text-[11px] text-[#6f857c]">
           Manager address: <a href={hyperdashHref} target="_blank" rel="noopener noreferrer" className="font-mono text-[#065f46] underline decoration-dotted underline-offset-2">{HYPEREVM_MANAGER.slice(0, 6)}…{HYPEREVM_MANAGER.slice(-4)}</a>
           {" "}— verify fees / open positions live.
+        </p>
+      </div>
+    );
+  }
+
+  // Mode A "awaiting first buy" state — fires when the launch has no recorded
+  // trades AND no matching position lives on the Hyperliquid manager. Stops us
+  // from rendering synthetic entry/mark/PnL derived from BTC candle data
+  // before any buy has actually happened.
+  if (source === "perp" && !hasTradedYet && !livePos) {
+    return (
+      <div className="border-b border-[#065f46]/10 px-4 py-3 md:px-6">
+        <div className="mb-3 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 text-sm uppercase tracking-wide text-[#7a827b]">
+            <Lightning size={14} className="text-[#065f46]" />
+            <span>perp position</span>
+          </div>
+          <a
+            href={hyperdashHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-[11px] text-[#065f46] hover:underline"
+          >
+            view manager on hyperdash
+            <ArrowSquareOut size={11} />
+          </a>
+        </div>
+        <div className="overflow-hidden rounded-md border border-[#f0b90b]/40 bg-[#fff7d6] px-4 py-3">
+          <div className="text-[11px] font-semibold uppercase tracking-wider text-[#946700]">
+            awaiting first buy
+          </div>
+          <div className="mt-1 text-sm font-bold text-[#17372d]">
+            No buys or sells yet
+          </div>
+          <p className="mt-1 text-[12px] leading-relaxed text-[#3b4a44]">
+            The first buy on this launch will open a {leverage}x {direction} {coin} perp on the
+            LYL manager via deBridge. Bridge round-trip is ~30-60s, then this panel will populate
+            with the real entry, mark, and unrealized PnL straight from Hyperliquid.
+          </p>
+        </div>
+        <p className="mt-2 text-[11px] text-[#6f857c]">
+          Manager address:{" "}
+          <a
+            href={hyperdashHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-[#065f46] underline decoration-dotted underline-offset-2"
+          >
+            {HYPEREVM_MANAGER.slice(0, 6)}…{HYPEREVM_MANAGER.slice(-4)}
+          </a>
+          {" "}— positions will appear live after first bridge settles.
         </p>
       </div>
     );

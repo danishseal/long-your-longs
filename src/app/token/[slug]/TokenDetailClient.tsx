@@ -119,6 +119,17 @@ export default function TokenDetailClient({ slug }: Props) {
     ? Math.floor(new Date(item.created_at).getTime() / 1000)
     : undefined;
 
+  // For Mode A: have any buys or sells actually happened on this launch yet?
+  //   - real_sol_reserves > 0 means SOL has flowed through the curve
+  //   - liveActivity contains at least one buy/sell tx
+  // Used to gate the chart + perp panel from showing synthetic data before
+  // the first real trade.
+  const realSolReserves = isLive ? Number(item?.real_sol_reserves ?? 0) : 0;
+  const tradeActivityCount = (liveActivity ?? []).filter(
+    (a) => a.kind === "buy" || a.kind === "sell",
+  ).length;
+  const hasTradedYet = realSolReserves > 0 || tradeActivityCount > 0;
+
   const mintAddress = isLive ? item?.address : null;
   const creatorAddress = isLive ? item?.creator : null;
 
@@ -261,6 +272,7 @@ export default function TokenDetailClient({ slug }: Props) {
               direction={launchDirection}
               launchTs={launchTs}
               mcAtLaunchUsd={mcUsd}
+              hasTradedYet={hasTradedYet}
             />
           )}
 
@@ -272,6 +284,7 @@ export default function TokenDetailClient({ slug }: Props) {
               launchTs={launchTs}
               symbol={token.symbol}
               source={item?.source === "pump" ? "pump" : "perp"}
+              hasTradedYet={hasTradedYet}
             />
           ) : null}
 

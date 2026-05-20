@@ -112,7 +112,7 @@ export function CreateTokenForm() {
       return runPerpLaunch(program, publicKey, values);
     },
     onMutate: () => toast.loading("Submitting launch...", { id: "create-token" }),
-    onSuccess: (result, values) => {
+    onSuccess: async (result, values) => {
       toast.success("Launch created", {
         id: "create-token",
         description: `${result.mint.slice(0, 8)}... sig ${result.signature.slice(0, 8)}...`,
@@ -168,21 +168,27 @@ export function CreateTokenForm() {
           window.localStorage.setItem("lyl_token_stubs", JSON.stringify(mapS));
         } catch {}
       }
-      // Also persist to server-side metadata store so the launch shows up
-      // with its real name/symbol/image for any visitor (not just the
-      // creator's browser).
-      fetch(`/api/metadata/${result.mint}`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          name: values.name,
-          symbol: values.symbol,
-          description: values.description ?? "",
-          image: values.image ?? "",
-          creator: publicKey?.toBase58() ?? "",
-          createdAt: Math.floor(Date.now() / 1000),
-        }),
-      }).catch(() => {});
+      // Await the server-side metadata write before navigating so the next
+      // page render finds the metadata at /api/metadata/{mint}. Previously
+      // this was fire-and-forget and frequently lost the race to the home
+      // grid + detail page fetches, leaving the launch with a generated
+      // avatar instead of the uploaded image.
+      try {
+        await fetch(`/api/metadata/${result.mint}`, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            name: values.name,
+            symbol: values.symbol,
+            description: values.description ?? "",
+            image: values.image ?? "",
+            creator: publicKey?.toBase58() ?? "",
+            createdAt: Math.floor(Date.now() / 1000),
+          }),
+        });
+      } catch (e) {
+        console.error("metadata POST failed:", e);
+      }
       queryClient.invalidateQueries({ queryKey: TOKENS_QUERY_KEY });
       router.push(`/token/${result.mint}`);
     },
