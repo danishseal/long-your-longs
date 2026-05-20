@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import HomePage from "../home-page";
 
 export const metadata: Metadata = {
-  title: "Long Your Longs",
+  title: "long your longs!",
   description: "Launch and discover tokens on Long Your Longs.",
 };
 
