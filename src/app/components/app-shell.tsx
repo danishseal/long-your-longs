@@ -249,7 +249,7 @@ export default function AppShell({
                 )}
                 <div className="space-y-0.5">
                   <a
-                    href="https://x.com"
+                    href="https://x.com/lyldotfun"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`flex rounded-md px-2 py-1.5 text-[13px] font-medium text-[#17372d] hover:bg-[#e6ddd0]/60 hover:text-[#065f46] ${sidebarCollapsed ? "justify-center" : "items-center gap-2.5"}`}
@@ -260,7 +260,7 @@ export default function AppShell({
                     </span>
                   </a>
                   <a
-                    href="https://telegram.org"
+                    href="https://t.me/lyldotfun"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`flex rounded-md px-2 py-1.5 text-[13px] font-medium text-[#17372d] hover:bg-[#e6ddd0]/60 hover:text-[#065f46] ${sidebarCollapsed ? "justify-center" : "items-center gap-2.5"}`}

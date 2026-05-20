@@ -131,6 +131,8 @@ export default function PumpPortalChart({
   const candleSeriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
   const volumeSeriesRef = useRef<ISeriesApi<"Histogram"> | null>(null);
   const candlesRef = useRef<PumpCandle[]>([]);
+  const userHasPannedRef = useRef(false);
+  const isAutoRangeChangeRef = useRef(false);
   const [status, setStatus] = useState<ChartStatus>("loading");
   const [candles, setCandles] = useState<PumpCandle[]>([]);
   const [lastQuote, setLastQuote] = useState<PumpQuote | null>(null);
@@ -151,6 +153,17 @@ export default function PumpPortalChart({
         vertLines: { color: "rgba(255,255,255,0.06)", style: 2 },
         horzLines: { color: "rgba(255,255,255,0.04)", style: 2 },
       },
+      handleScroll: {
+        mouseWheel: true,
+        pressedMouseMove: true,
+        horzTouchDrag: true,
+      },
+      handleScale: {
+        axisDoubleClickReset: true,
+        axisPressedMouseMove: true,
+        mouseWheel: true,
+        pinch: true,
+      },
       rightPriceScale: {
         borderColor: "rgba(255,255,255,0.08)",
         scaleMargins: { top: 0.08, bottom: 0.22 },
@@ -162,12 +175,21 @@ export default function PumpPortalChart({
         barSpacing: 14,
         minBarSpacing: 6,
         rightOffset: 4,
-        fixLeftEdge: true,
+        // Let users pan back to the first candle; don't lock the left edge.
+        fixLeftEdge: false,
       },
       crosshair: {
         vertLine: { color: "rgba(255,255,255,0.18)", width: 1, style: 2 },
         horzLine: { color: "rgba(255,255,255,0.18)", width: 1, style: 2 },
       },
+    });
+
+    // If the user pans/zooms, stop auto-fitting on subsequent data refreshes.
+    // We ignore programmatic range changes (fitContent) to avoid disabling
+    // auto-fit immediately.
+    chart.timeScale().subscribeVisibleLogicalRangeChange(() => {
+      if (isAutoRangeChangeRef.current) return;
+      userHasPannedRef.current = true;
     });
 
     const candleSeries = chart.addSeries(CandlestickSeries, {
@@ -210,6 +232,7 @@ export default function PumpPortalChart({
 
   useEffect(() => {
     let cancelled = false;
+    userHasPannedRef.current = false;
 
     async function loadCandles() {
       try {
@@ -248,7 +271,14 @@ export default function PumpPortalChart({
           return;
         }
 
-        chartRef.current?.timeScale().fitContent();
+        if (!userHasPannedRef.current && chartRef.current) {
+          isAutoRangeChangeRef.current = true;
+          try {
+            chartRef.current.timeScale().fitContent();
+          } finally {
+            isAutoRangeChangeRef.current = false;
+          }
+        }
         setStatus("live");
       } catch {
         if (!cancelled) setStatus("error");

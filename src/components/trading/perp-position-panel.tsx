@@ -151,6 +151,8 @@ export function PerpPositionPanel({
         : 0;
 
   const explorerHref = `https://app.hyperliquid.xyz/explorer/address/${HYPEREVM_MANAGER}`;
+  const hyperdashHref =
+    "https://hyperdash.com/address/0x1ddf514644fc66492d39fcb6a452cdcb2a5bf3d5";
 
   // Mode B: no proportional perp opens per-trade. Fees harvested from pump.fun
   // accumulate on the LYL PDA's creator vault; once they cross MIN_HARVEST_USD
@@ -164,12 +166,12 @@ export function PerpPositionPanel({
             <span>pump.fun creator fees → perp</span>
           </div>
           <a
-            href={explorerHref}
+            href={hyperdashHref}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-[11px] text-[#065f46] hover:underline"
           >
-            view manager on Hyperliquid
+            view manager on hyperdash
             <ArrowSquareOut size={11} />
           </a>
         </div>
@@ -196,7 +198,7 @@ export function PerpPositionPanel({
           </p>
         </div>
         <p className="mt-2 text-[11px] text-[#6f857c]">
-          Manager address: <a href={explorerHref} target="_blank" rel="noopener noreferrer" className="font-mono text-[#065f46] underline decoration-dotted underline-offset-2">{HYPEREVM_MANAGER.slice(0, 6)}…{HYPEREVM_MANAGER.slice(-4)}</a>
+          Manager address: <a href={hyperdashHref} target="_blank" rel="noopener noreferrer" className="font-mono text-[#065f46] underline decoration-dotted underline-offset-2">{HYPEREVM_MANAGER.slice(0, 6)}…{HYPEREVM_MANAGER.slice(-4)}</a>
           {" "}— verify fees / open positions live.
         </p>
       </div>
@@ -212,12 +214,12 @@ export function PerpPositionPanel({
         </div>
         <div className="flex items-center gap-3 text-[11px] text-[#6f857c]">
           <a
-            href={explorerHref}
+            href={hyperdashHref}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-[#065f46] hover:underline"
           >
-            view on Hyperliquid
+            view on hyperdash
             <ArrowSquareOut size={11} />
           </a>
           <span className="inline-flex items-center gap-1">

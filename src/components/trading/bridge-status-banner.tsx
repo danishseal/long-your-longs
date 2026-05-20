@@ -3,10 +3,7 @@
 import { useEffect, useState } from "react";
 import { ArrowSquareOut, CheckCircle, Spinner } from "@phosphor-icons/react";
 import { HYPEREVM_PERP_MANAGER } from "@/lib/altsol/constants";
-import {
-  fetchClearinghouseState,
-  hyperliquidPositionExplorerUrl,
-} from "@/lib/altsol/hyperliquid";
+import { fetchClearinghouseState } from "@/lib/altsol/hyperliquid";
 
 interface BridgeStatusBannerProps {
   mint: string;
@@ -93,6 +90,8 @@ export function BridgeStatusBanner({ mint }: BridgeStatusBannerProps) {
   if (!entry) return null;
 
   const elapsed = Math.floor((Date.now() - entry.startedAt) / 1000);
+  const hyperdashHref =
+    "https://hyperdash.com/address/0x1ddf514644fc66492d39fcb6a452cdcb2a5bf3d5";
 
   return (
     <div className="mb-4 rounded-md border border-primary/40 bg-primary/5 px-4 py-3">
@@ -117,12 +116,12 @@ export function BridgeStatusBanner({ mint }: BridgeStatusBannerProps) {
               ? `confirmed in ${Math.floor(((confirmedAt - entry.startedAt) / 1000))}s`
               : `${elapsed}s elapsed · usually 30-60s`}
             <a
-              href={hyperliquidPositionExplorerUrl(HYPEREVM_PERP_MANAGER)}
+              href={hyperdashHref}
               target="_blank"
               rel="noreferrer"
               className="ml-2 inline-flex items-center gap-1 text-primary hover:underline"
             >
-              view on hyperliquid <ArrowSquareOut size={11} />
+              view on hyperdash <ArrowSquareOut size={11} />
             </a>
           </p>
         </div>
