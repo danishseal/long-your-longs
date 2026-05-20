@@ -1,0 +1,2499 @@
+{
+  "address": "C1q8mGfr8a5rfPbaCJ1mGpocsDJc1xXZxbX1adLAX4r9",
+  "metadata": {
+    "name": "altsol",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "buy",
+      "discriminator": [
+        102,
+        6,
+        61,
+        18,
+        1,
+        218,
+        235,
+        234
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "launch",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  117,
+                  110,
+                  99,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "launch_authority",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  117,
+                  116,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "launch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "relations": [
+            "launch"
+          ]
+        },
+        {
+          "name": "quote_mint",
+          "address": "So11111111111111111111111111111111111111112",
+          "relations": [
+            "launch"
+          ]
+        },
+        {
+          "name": "user_synth_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "user"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "launch_quote_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "launch_authority"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "quote_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "cranker_wsol_ata",
+          "docs": [
+            "Cranker wSOL ATA — receives fee_bps × sol_in on every buy.",
+            "Permissionless: anyone can fund the cranker; ATA's authority is BRIDGE_CRANKER."
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "cranker"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "quote_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "cranker",
+          "address": "5BYyHQHe8CMcAMJogQpz2c9wukSSAZdhrsdnvSFwTVVx"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "BuyParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "graduate",
+      "discriminator": [
+        45,
+        235,
+        225,
+        181,
+        17,
+        218,
+        64,
+        130
+      ],
+      "accounts": [
+        {
+          "name": "cranker",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "launch",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  117,
+                  110,
+                  99,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "launch_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  117,
+                  116,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "launch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "relations": [
+            "launch"
+          ]
+        },
+        {
+          "name": "quote_mint",
+          "relations": [
+            "launch"
+          ]
+        },
+        {
+          "name": "launch_quote_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "launch_authority"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "quote_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "harvest",
+      "discriminator": [
+        228,
+        241,
+        31,
+        182,
+        53,
+        169,
+        59,
+        199
+      ],
+      "accounts": [
+        {
+          "name": "cranker",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "pump_launch",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  117,
+                  109,
+                  112,
+                  95,
+                  108,
+                  97,
+                  117,
+                  110,
+                  99,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pump_launch.pump_mint",
+                "account": "PumpLaunch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "launch_authority",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  117,
+                  109,
+                  112,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pump_launch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "wsol_mint",
+          "address": "So11111111111111111111111111111111111111112"
+        },
+        {
+          "name": "launch_wsol_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "launch_authority"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wsol_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "HarvestParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "init_launch",
+      "discriminator": [
+        75,
+        162,
+        31,
+        198,
+        192,
+        109,
+        36,
+        169
+      ],
+      "accounts": [
+        {
+          "name": "creator",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "launch",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  117,
+                  110,
+                  99,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "launch_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  117,
+                  116,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "launch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "quote_mint",
+          "address": "So11111111111111111111111111111111111111112"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "InitLaunchParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "init_pump_launch",
+      "discriminator": [
+        31,
+        24,
+        172,
+        177,
+        57,
+        53,
+        211,
+        163
+      ],
+      "accounts": [
+        {
+          "name": "creator",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "pump_mint"
+        },
+        {
+          "name": "pump_launch",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  117,
+                  109,
+                  112,
+                  95,
+                  108,
+                  97,
+                  117,
+                  110,
+                  99,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pump_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "launch_authority",
+          "docs": [
+            "and as the bridge-escrow signer."
+          ],
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  117,
+                  109,
+                  112,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pump_launch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "InitPumpLaunchParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "release_to_bridge",
+      "discriminator": [
+        155,
+        192,
+        176,
+        70,
+        118,
+        47,
+        146,
+        108
+      ],
+      "accounts": [
+        {
+          "name": "cranker",
+          "writable": true,
+          "signer": true,
+          "address": "5BYyHQHe8CMcAMJogQpz2c9wukSSAZdhrsdnvSFwTVVx"
+        },
+        {
+          "name": "launch",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  117,
+                  110,
+                  99,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "launch_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  117,
+                  116,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "launch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "relations": [
+            "launch"
+          ]
+        },
+        {
+          "name": "quote_mint",
+          "address": "So11111111111111111111111111111111111111112",
+          "relations": [
+            "launch"
+          ]
+        },
+        {
+          "name": "launch_quote_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "launch_authority"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "quote_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "cranker_quote_ata",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "ReleaseToBridgeParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "release_to_bridge_pump",
+      "discriminator": [
+        47,
+        215,
+        91,
+        95,
+        235,
+        112,
+        158,
+        65
+      ],
+      "accounts": [
+        {
+          "name": "cranker",
+          "writable": true,
+          "signer": true,
+          "address": "5BYyHQHe8CMcAMJogQpz2c9wukSSAZdhrsdnvSFwTVVx"
+        },
+        {
+          "name": "pump_launch",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  117,
+                  109,
+                  112,
+                  95,
+                  108,
+                  97,
+                  117,
+                  110,
+                  99,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pump_launch.pump_mint",
+                "account": "PumpLaunch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "launch_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  117,
+                  109,
+                  112,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "pump_launch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "wsol_mint",
+          "address": "So11111111111111111111111111111111111111112"
+        },
+        {
+          "name": "launch_wsol_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "launch_authority"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "wsol_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "cranker_wsol_ata",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "ReleaseToBridgeParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "sell",
+      "discriminator": [
+        51,
+        230,
+        133,
+        164,
+        1,
+        127,
+        131,
+        173
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "launch",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  117,
+                  110,
+                  99,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "launch_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  117,
+                  116,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "launch"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "relations": [
+            "launch"
+          ]
+        },
+        {
+          "name": "quote_mint",
+          "address": "So11111111111111111111111111111111111111112",
+          "relations": [
+            "launch"
+          ]
+        },
+        {
+          "name": "user_synth_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "user"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "user_quote_ata",
+          "docs": [
+            "User's wSOL ATA. Curve payout lands here."
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "user"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "quote_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "launch_quote_ata",
+          "docs": [
+            "Launch's wSOL escrow ATA. Curve pulls from here."
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "launch_authority"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "quote_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "cranker_wsol_ata",
+          "docs": [
+            "Cranker wSOL ATA — receives fee_bps × sol_out on every sell."
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "cranker"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "quote_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "cranker",
+          "address": "5BYyHQHe8CMcAMJogQpz2c9wukSSAZdhrsdnvSFwTVVx"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "SellParams"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Launch",
+      "discriminator": [
+        144,
+        51,
+        51,
+        163,
+        206,
+        85,
+        213,
+        38
+      ]
+    },
+    {
+      "name": "PumpLaunch",
+      "discriminator": [
+        142,
+        51,
+        20,
+        70,
+        67,
+        122,
+        52,
+        220
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "BuyIntent",
+      "discriminator": [
+        251,
+        72,
+        172,
+        161,
+        181,
+        188,
+        244,
+        238
+      ]
+    },
+    {
+      "name": "HarvestIntent",
+      "discriminator": [
+        23,
+        43,
+        248,
+        24,
+        117,
+        55,
+        158,
+        216
+      ]
+    },
+    {
+      "name": "LaunchInitialized",
+      "discriminator": [
+        60,
+        143,
+        196,
+        55,
+        214,
+        166,
+        10,
+        63
+      ]
+    },
+    {
+      "name": "PumpLaunchInitialized",
+      "discriminator": [
+        115,
+        236,
+        30,
+        91,
+        232,
+        8,
+        235,
+        234
+      ]
+    },
+    {
+      "name": "SellIntent",
+      "discriminator": [
+        166,
+        17,
+        49,
+        0,
+        203,
+        93,
+        100,
+        72
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "AlreadyGraduated",
+      "msg": "launch is already graduated"
+    },
+    {
+      "code": 6001,
+      "name": "NotGraduated",
+      "msg": "launch has not yet graduated"
+    },
+    {
+      "code": 6002,
+      "name": "BelowGraduationThreshold",
+      "msg": "graduation threshold not yet reached"
+    },
+    {
+      "code": 6003,
+      "name": "SlippageExceeded",
+      "msg": "slippage exceeded"
+    },
+    {
+      "code": 6004,
+      "name": "ZeroAmount",
+      "msg": "amount must be non-zero"
+    },
+    {
+      "code": 6005,
+      "name": "MathOverflow",
+      "msg": "math overflow"
+    },
+    {
+      "code": 6006,
+      "name": "StaleOracle",
+      "msg": "oracle price unavailable or stale"
+    },
+    {
+      "code": 6007,
+      "name": "BridgeNotAuthorized",
+      "msg": "bridge action not authorized"
+    },
+    {
+      "code": 6008,
+      "name": "InvalidQuoteMint",
+      "msg": "invalid quote mint"
+    },
+    {
+      "code": 6009,
+      "name": "LeverageOutOfRange",
+      "msg": "leverage exceeds protocol cap (3x)"
+    },
+    {
+      "code": 6010,
+      "name": "CurveExhausted",
+      "msg": "curve has run out of tokens; wait for graduation"
+    },
+    {
+      "code": 6011,
+      "name": "InsufficientShares",
+      "msg": "not enough tokens in user account"
+    }
+  ],
+  "types": [
+    {
+      "name": "BackingDirection",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Long"
+          },
+          {
+            "name": "Short"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BuyIntent",
+      "docs": [
+        "Emitted on `buy`. The frontend / harvest bot watches these to construct the deBridge",
+        "DlnSource order in the same Solana transaction so funds bridge to HyperEVM atomically."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "launch",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "sol_in",
+            "type": "u64"
+          },
+          {
+            "name": "shares_minted",
+            "type": "u64"
+          },
+          {
+            "name": "perp_asset",
+            "type": "u16"
+          },
+          {
+            "name": "direction",
+            "type": {
+              "defined": {
+                "name": "BackingDirection"
+              }
+            }
+          },
+          {
+            "name": "leverage_bps",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BuyParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "sol_in",
+            "type": "u64"
+          },
+          {
+            "name": "min_tokens_out",
+            "docs": [
+              "Minimum tokens the buyer accepts. If the curve releases fewer (slippage), revert."
+            ],
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "HarvestIntent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "pump_launch",
+            "type": "pubkey"
+          },
+          {
+            "name": "pump_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "lamports_in",
+            "type": "u64"
+          },
+          {
+            "name": "base_amount",
+            "type": "u64"
+          },
+          {
+            "name": "perp_asset",
+            "type": "u16"
+          },
+          {
+            "name": "direction",
+            "type": {
+              "defined": {
+                "name": "BackingDirection"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "HarvestParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "lamports_to_deploy",
+            "type": "u64"
+          },
+          {
+            "name": "base_amount",
+            "type": "u64"
+          },
+          {
+            "name": "min_base_amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InitLaunchParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "name": "hyperliquid_perp_asset",
+            "type": "u16"
+          },
+          {
+            "name": "fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "graduation_threshold_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "leverage_bps",
+            "type": "u16"
+          },
+          {
+            "name": "direction",
+            "type": {
+              "defined": {
+                "name": "BackingDirection"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "InitPumpLaunchParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "reference_perp_market_index",
+            "type": "u16"
+          },
+          {
+            "name": "direction",
+            "type": {
+              "defined": {
+                "name": "BackingDirection"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Launch",
+      "docs": [
+        "Launch backs an SPL mint with a cross-chain leveraged perp position on Hyperliquid",
+        "plus a constant-product bonding curve on Solana.",
+        "",
+        "Price discovery happens on the curve (virtual reserves model, pump.fun-style):",
+        "each buy releases tokens to the buyer along the curve AND ships SOL to the bridge",
+        "crank which opens a leveraged perp position of `sol_in * leverage` notional on",
+        "Hyperliquid. Sells reverse: burn tokens from the curve, refund proportional SOL,",
+        "and signal a reduce-only close on the perp side.",
+        "",
+        "Note: this layout is NOT backwards-compatible with pre-curve Launch accounts.",
+        "Old launches (test data) become unreadable after the curve upgrade."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "authority_bump",
+            "type": "u8"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "quote_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "hyperliquid_perp_asset",
+            "type": "u16"
+          },
+          {
+            "name": "reserved_spot_index",
+            "type": "u16"
+          },
+          {
+            "name": "fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "leverage_bps",
+            "type": "u16"
+          },
+          {
+            "name": "direction",
+            "type": {
+              "defined": {
+                "name": "BackingDirection"
+              }
+            }
+          },
+          {
+            "name": "total_minted",
+            "type": "u64"
+          },
+          {
+            "name": "total_burned",
+            "type": "u64"
+          },
+          {
+            "name": "cumulative_quote_in",
+            "type": "u64"
+          },
+          {
+            "name": "cumulative_quote_out",
+            "type": "u64"
+          },
+          {
+            "name": "graduation_threshold_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "is_graduated",
+            "type": "bool"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "virtual_sol_reserves",
+            "docs": [
+              "Bonding curve state (constant product, virtual reserves)."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "virtual_token_reserves",
+            "type": "u64"
+          },
+          {
+            "name": "real_sol_reserves",
+            "type": "u64"
+          },
+          {
+            "name": "real_token_reserves",
+            "type": "u64"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LaunchInitialized",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "launch",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "perp_asset",
+            "type": "u16"
+          },
+          {
+            "name": "direction",
+            "type": {
+              "defined": {
+                "name": "BackingDirection"
+              }
+            }
+          },
+          {
+            "name": "leverage_bps",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PumpLaunch",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "authority_bump",
+            "type": "u8"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "pump_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "reference_perp_market_index",
+            "type": "u16"
+          },
+          {
+            "name": "direction",
+            "type": {
+              "defined": {
+                "name": "BackingDirection"
+              }
+            }
+          },
+          {
+            "name": "cumulative_lamports_harvested",
+            "type": "u64"
+          },
+          {
+            "name": "cumulative_base_opened",
+            "type": "u64"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PumpLaunchInitialized",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "pump_launch",
+            "type": "pubkey"
+          },
+          {
+            "name": "pump_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "perp_asset",
+            "type": "u16"
+          },
+          {
+            "name": "direction",
+            "type": {
+              "defined": {
+                "name": "BackingDirection"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ReleaseToBridgeParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SellIntent",
+      "docs": [
+        "Emitted on `sell`. Triggers reverse-direction bridge order to close the per-launch",
+        "position on Hyperliquid and return USDC to the user on Solana."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "launch",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "shares_burned",
+            "type": "u64"
+          },
+          {
+            "name": "min_sol_out",
+            "type": "u64"
+          },
+          {
+            "name": "perp_asset",
+            "type": "u16"
+          },
+          {
+            "name": "direction",
+            "type": {
+              "defined": {
+                "name": "BackingDirection"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "SellParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "shares_in",
+            "type": "u64"
+          },
+          {
+            "name": "min_sol_out",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "BRIDGE_CRANKER",
+      "docs": [
+        "Authorised bridge crank. Pulls wSOL/SOL out of launch_authority PDAs and ships orders",
+        "to deBridge DlnSource on Solana. Single trusted hot wallet, owned by the project.",
+        "Set to the mainnet deployer for now (same wallet that pays for the program upgrade);",
+        "can be rotated by redeploying with a new constant if it gets compromised."
+      ],
+      "type": "pubkey",
+      "value": "5BYyHQHe8CMcAMJogQpz2c9wukSSAZdhrsdnvSFwTVVx"
+    },
+    {
+      "name": "DLN_SOURCE_PROGRAM_ID",
+      "docs": [
+        "deBridge DLN source program on Solana."
+      ],
+      "type": "pubkey",
+      "value": "src5qyZHqTqecJV4aY6Cb6zDZLMDzrDKKezs22MPHr4"
+    },
+    {
+      "name": "LAUNCH_AUTH_SEED",
+      "type": "bytes",
+      "value": "[97, 117, 116, 104]"
+    },
+    {
+      "name": "LAUNCH_SEED",
+      "type": "bytes",
+      "value": "[108, 97, 117, 110, 99, 104]"
+    },
+    {
+      "name": "USDC_MINT",
+      "docs": [
+        "USDC on Solana mainnet. Used as bridge medium since deBridge solvers want USDC."
+      ],
+      "type": "pubkey",
+      "value": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    },
+    {
+      "name": "WSOL_MINT",
+      "type": "pubkey",
+      "value": "So11111111111111111111111111111111111111112"
+    }
+  ]
+}
