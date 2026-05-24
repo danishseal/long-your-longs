@@ -15,13 +15,22 @@ export default function Home() {
                 <br />
                 optimistic on memes.
               </p>
-              <div className="mt-8 flex justify-center">
+              <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <Link
                   href="/home"
                   className="bg-[#065f46] px-8 py-3 text-sm uppercase tracking-[0.2em] !text-white transition-opacity hover:opacity-90 font-[family-name:jgs]"
                   style={{ color: "#ffffff" }}
                 >
                   Launch
+                </Link>
+                <Link
+                  href="https://pump.fun/coin/DYwjY9jP5JQbEqrzeYGecbh9sZgz8MVaHBLMEtu2pump"
+                  className="bg-[#065f46] px-8 py-3 text-sm uppercase tracking-[0.2em] !text-white transition-opacity hover:opacity-90 font-[family-name:jgs]"
+                  style={{ color: "#ffffff" }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  OUR TOKEN
                 </Link>
               </div>
             </div>
